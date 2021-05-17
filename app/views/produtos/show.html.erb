@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @produto.nome %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @produto.descricao %>
+</p>
+
+<% unless @produto.foto.file.nil? %>
+  <p>
+    <strong>Foto:</strong>
+    <%= image_tag @produto.foto.url %>
+  </p>
+<% end %>
+
+<p>
+  <strong>Categoria:</strong>
+  <%= @produto.categoria.try(:nome) %>
+</p>
+
+<p>
+  <strong>Pontos para troca:</strong>
+  <%= @produto.pontos %>
+</p>
+
+<%= link_to 'Editar', edit_produto_path(@produto) %> |
+<%= link_to 'Voltar', produtos_path %>

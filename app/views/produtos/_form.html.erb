@@ -1,0 +1,42 @@
+<%= form_with(model: produto) do |form| %>
+  <% if produto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(produto.errors.count, "error") %> Não foi possivel salvar esse produto:</h2>
+
+      <ul>
+        <% produto.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descricao %>
+    <%= form.text_area :descricao %>
+  </div>
+
+  <div class="field">
+    <%= form.label :foto %>
+    <%= form.file_field :foto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :categoria_id %>
+    <%= form.select :categoria_id, @categorias.collect {|c| [c.nome, c.id] }, {include_blank: true} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pontos %>
+    <%= form.number_field :pontos %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

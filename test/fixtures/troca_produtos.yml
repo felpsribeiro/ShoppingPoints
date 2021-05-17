@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cliente_id: 
+  produto_id: 
+  estado: 9.99
+
+two:
+  cliente_id: 
+  produto_id: 
+  estado: 9.99

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Produtos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descricao</th>
+      <th>Foto</th>
+      <th>Categoria</th>
+      <th>Pontos para troca</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @produtos.each do |produto| %>
+      <tr>
+        <td><%= produto.nome %></td>
+        <td><%= produto.descricao %></td>
+        <td><%= image_tag produto.foto.url unless produto.foto.file.nil? %></td>
+        <td><%= produto.categoria.try(:nome) %></td>
+        <td><%= produto.pontos %></td>
+        <td><%= link_to 'Mostrar', produto %></td>
+        <td><%= link_to 'Editar', edit_produto_path(produto) %></td>
+        <td><%= link_to 'Apagar', produto, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo Produto', new_produto_path %>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ShoppingPoints</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if current_funcionario %>
+      <td><%= link_to 'Início', root_path %></td>
+      <td><%= link_to 'Funcionarios', funcionarios_path %></td>
+      <td><%= link_to 'Clientes', clientes_path %></td>
+      <td><%= link_to 'Categorias', categorias_path %></td>
+      <td><%= link_to 'Produtos', produtos_path %></td>
+      <td><%= link_to 'Trocar Produtos', troca_produtos_path %></td>
+      <td><%= link_to 'Sair', destroy_funcionario_session_path, method: :delete %></td>
+    <% end %>
+    <br>
+    <br>
+    <%= yield %>
+  </body>
+</html>

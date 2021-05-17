@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Troca de Produtos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Produto</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @troca_produtos.each do |troca_produto| %>
+      <tr>
+        <td><%= troca_produto.cliente.try(:nome) %></td>
+        <td><%= troca_produto.produto.try(:nome) %></td>
+        <td><%= troca_produto.estado %></td>
+        <td><%= link_to 'Mostrar', troca_produto %></td>
+        <td><%= link_to 'Estado', edit_troca_produto_path(troca_produto) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova Troca de Produto', new_troca_produto_path %>

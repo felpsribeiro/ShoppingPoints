@@ -1,0 +1,34 @@
+<p id="Noticia"><%= notice %></p>
+
+<h1>Clientes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Usuario</th>
+      <th>Saldo de Pontos</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clientes.each do |cliente| %>
+      <tr>
+        <td><%= cliente.nome %></td>
+        <td><%= cliente.email %></td>
+        <td><%= cliente.usuario %></td>
+        <td><%= cliente.saldo_pontos %></td>
+        <td><%= link_to 'Adicionar Pontos', add_cliente_path(cliente) %></td>
+        <td><%= link_to 'Mostrar', cliente %></td>
+        <td><%= link_to 'Editar', edit_cliente_path(cliente) %></td>
+        <td><%= link_to 'Apagar', cliente, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo Cliente', new_cliente_path %>

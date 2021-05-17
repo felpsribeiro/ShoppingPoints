@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @troca_produto.cliente.try(:nome) %>
+</p>
+
+<p>
+  <strong>Produto:</strong>
+  <%= @troca_produto.produto.try(:nome) %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @troca_produto.estado %>
+</p>
+
+<%= link_to 'Estado', edit_troca_produto_path(@troca_produto) %> |
+<%= link_to 'Voltar', troca_produtos_path %>

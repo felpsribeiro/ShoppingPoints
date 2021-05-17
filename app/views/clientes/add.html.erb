@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Adicionar Pontos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Saldo de Pontos</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= @cliente.nome %></td>
+        <td><%= @cliente.saldo_pontos %></td>
+      </tr>
+  </tbody>
+</table>
+
+<br>
+
+<%= form_with(model: @cliente) do |form| %>
+  <% if @cliente.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cliente.errors.count, "error") %> prohibited this cliente from being saved:</h2>
+
+      <ul>
+        <% @cliente.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :saldo_pontos, "Adicionar Pontos" %>
+    <%= form.number_field :saldo_pontos %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<br>
+
+<%= link_to 'Voltar', clientes_path %>

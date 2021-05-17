@@ -1,0 +1,22 @@
+<%= form_with(model: categoria) do |form| %>
+  <% if categoria.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(categoria.errors.count, "error") %> Não foi possivel salvar essa categoria:</h2>
+
+      <ul>
+        <% categoria.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

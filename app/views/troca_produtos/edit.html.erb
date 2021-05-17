@@ -1,0 +1,66 @@
+<h1>Estado da Troca de Produto</h1>
+
+<% troca_produto = @troca_produto %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Pontos Cliente</th>
+      <th>Produto</th>
+      <th>Pontos Produto</th>
+      <th>Troca Valida?</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+        <td><%= troca_produto.cliente.try(:nome) %></td>
+        <td><%= troca_produto.cliente.try(:saldo_pontos) %></td>
+        <td><%= troca_produto.produto.try(:nome) %></td>
+        <td><%= troca_produto.produto.try(:pontos) %></td>  
+        <td>
+            <% if troca_produto.cliente.try(:saldo_pontos) >= troca_produto.produto.try(:pontos) %>
+                Valida
+            <% else %>
+                Invalida
+            <% end %>
+        </td>  
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<%= form_with(model: troca_produto) do |form| %>
+  <% if troca_produto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(troca_produto.errors.count, "error") %> prohibited this troca_produto from being saved:</h2>
+
+      <ul>
+        <% troca_produto.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if troca_produto.cliente.try(:saldo_pontos) >= troca_produto.produto.try(:pontos) %>
+    <div class="field">
+        <%= form.label :estado %>
+        <%= form.select :estado, [["Aprovar Pedido",:Aprovado],["Cancelar Pedido", :Cancelado]], {prompt: ""} %>
+    </div>
+  <% else %> 
+    <div class="field">
+        <%= form.label :estado %>
+        <%= form.select :estado, [["Cancelar Pedido", :Cancelado]], {prompt: ""} %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Mostrar', @troca_produto %> |
+<%= link_to 'Voltar', troca_produtos_path %>
